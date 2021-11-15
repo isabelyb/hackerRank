@@ -1,26 +1,28 @@
+# numbers = [20,30,0,10]
+# queries = [[1,3,10]]
+
+# numbers = [5,10,10]
+# queries = [[1,2,5]]
+
 numbers = [-5,0]
-queries = [[1,2,10], [2,2,20]]
+queries = [[2,2,20], [1,2,10]]
 
-# for i in range(len(queries)):
-#     print(i)
-#     for i in range(queries[i][0]-1,queries[i][1]):
-#         pass
-#     print(i, 'x')
-for i in range(len(queries)):
-    for i in range(queries[i][0]-1,queries[i][1]):
-       print('range: ', range(queries[i][0]-1,queries[i][1]))
+def sumi(numbers, queries):
+    result = []
+    for q in queries:
+        subarray_sums = 0
+        x = q[2]
+        for i in numbers[q[0]-1:q[1]]:
+            if i == 0:
+                i = i + x
+            else:
+                i = i
+            subarray_sums = subarray_sums + i
+        result.append(subarray_sums)
+    return result
 
-for i in range(len(queries)):
-    result = 0
-    x = queries[i][2]
-    for i in range(queries[i][0]-1,queries[i][1]):
-        if numbers[i] == 0:
-            numbers[i] = numbers[i] + x
-        else:
-            numbers[i] = numbers[i]
-    
-        result = result + numbers[i]
-        print(result)
+if __name__ == '__main__':
+    print(sumi(numbers, queries))
 
 
 
@@ -28,13 +30,9 @@ for i in range(len(queries)):
 
 
 
-# for i in range(len(queries)):
-#     result = 0
-#     for i in range(queries[i][0]-1,queries[i][1]):
-#         result = result + numbers[i]
-#     print(result)
 
 
+### TO SUM ELEMENTS IN A LIST ###
 
 ''' Method 1: Sum()
 x = [1,2,3,4]
